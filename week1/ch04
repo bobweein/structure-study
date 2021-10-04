@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main()
+{
+	float p=1.0, r = 0.07;
+	int n = 10;
+	for (n = 1; n <= 10; n++)
+	{
+		
+		p = (1 + r) * p;
+		printf("第%d年", n);
+		printf("%lf\n", p);
+	}
+	return 0;
+}
