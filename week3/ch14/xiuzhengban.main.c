@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include <string.h>
+
 int main()
 {
 	void copy(char* po1,char*po2);	
