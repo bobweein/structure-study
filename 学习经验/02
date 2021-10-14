@@ -1,0 +1,30 @@
+对数组用函数进行输入时一定要在数组结束处补上一个'\0'  来表示该数组已结束！！！！！！！！！！！！！！！
+
+	char a[21];
+	char b[21];
+	printf("请输入小于等于20字节的字符串\n");
+	int i;
+	printf("输入的数组a[i]为：");
+	for (i = 0; i <= 20;i++)
+	{
+		scanf_s("%c", &a[i], 1);
+		int c = a[i];
+		if (c == '\n')
+		{
+			a[i] = '\0';
+		break;
+		}
+	}
+	printf("输入的数组b[i]为：");
+	for (i = 0; i <= 20; i++)
+	{
+		scanf_s("%c", &b[i], 1);
+		int c = b[i];
+		if (c == '\n')
+		{
+			b[i] = '\0';
+			break;
+		}
+	}
+	
+完整代码请查看week3/ch14/zhengshiban.main.c
