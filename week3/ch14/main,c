@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include <string.h>
+int main()
+{
+	void copy(char* po1,char*po2);	
+	//char a[] = "I love to be freedon";
+	char a[21]="aaaa";
+	char b[21]="kjjjjj";
+
+	
+	char* p1 = a;
+	char* p2 = b;
+	int m = strlen(p1), n = strlen(p2);
+	copy(p1, p2);
+	for (p1 = a; p1 <= a+ n-1&&p1<=a+m-1; p1++)
+		printf("%c", *p1);
+	return 0;
+}
+void copy(char* po1, char* po2)
+{
+	int len = strlen(po1);
+	int len1 = strlen(po2);
+	for (int i = 0; i<=len&& i <= len1&& *(po1 + i) != '\0'; i++)
+	{
+	
+		*(po1 + i )=* (po2 + i);
+		
+	}
+}
+//像解决的问题就是如何定义指针的同时输入数组元素；
