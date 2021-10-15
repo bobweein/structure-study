@@ -5,10 +5,13 @@ int main()
 	int min(int, int);
 	int (*p)(int, int);
 	int a, b, c, n;
+	char ax,bx;
 	printf("please enter a and b :");
 	scanf_s("%d %d", &a, &b);
 	printf(" please choose 1 or 2:");
 	scanf_s("%d", &n);
+	scanf_s("%c%c",&ax,1,&bx,1);
+	printf("%c %c\n", ax, bx);
 	p = max;
 	if (n == 1) p = max;
 	else if (n == 2) p = min;
