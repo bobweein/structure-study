@@ -1,4 +1,4 @@
-//该链表尾循环单链表！
+//该链表为循环单链表！
 #include <stdio.h>
 typedef int ProToNode;
 typedef ProToNode List;
