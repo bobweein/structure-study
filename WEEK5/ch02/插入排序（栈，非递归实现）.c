@@ -1,4 +1,4 @@
-//用队列（非递归的方法）实现插入排序
+//用栈（非递归的方法）实现插入排序
 #include<stdio.h>
 #define MaxSize 20
 void insertionsort( int *p,int n)
