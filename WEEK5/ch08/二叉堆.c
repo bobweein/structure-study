@@ -1,3 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<malloc.h>
+#define FatalError( Str )   fprintf( stderr, "%s\n", Str ), exit( 1 )
+#define MinPQSize 11
+#define MinData 0
+struct HeapStruct;
+typedef struct HeapStruct* PriorityQueue;
+PriorityQueue Initialize(int maxElements);
+void Destroy(PriorityQueue H);
+void MakeEmpty(PriorityQueue H);
+void Insert(int x, PriorityQueue H);
+int DeleteMin(PriorityQueue H);
+int FindMin(PriorityQueue H);
+int IsEmpty(PriorityQueue H);
+int IsFull(PriorityQueue pqueue);
+struct HeapStruct
+{
+    int Capacity;
+    int Size;
+    int* Elements;
+};
 PriorityQueue Initialize(int maxElements)
 {
     PriorityQueue H;
@@ -9,8 +31,6 @@ PriorityQueue Initialize(int maxElements)
     H = malloc(sizeof(struct HeapStruct));
     if (H == NULL)
         FatalError("Out of space");
-
-    // 数组的第0个元素是个sentinel标记节点，计入数组容量中，但不计入capcaity或size中
     H->Elements = malloc((maxElements + 1) * sizeof(int));
     if (H->Elements == NULL)
         FatalError("Out of space");
@@ -64,26 +84,32 @@ void printHeap(PriorityQueue H) {
         printf("\n");
     }
 }
-int isEmpty(PriorityQueue H) {//判空
+int isEmpty(PriorityQueue H) 
+{
 
     return H->Size == 0;
 }
 
-int isFull(PriorityQueue H) {//判满
+int isFull(PriorityQueue H)
+{
     return H->Size == H->Capacity;
 }
-int main() {
-    PriorityQueue H = Initialize(10);
+int main() 
+{
+    printf("初始化二叉堆：");
+    PriorityQueue H = Initialize(11);
     if (isEmpty(H))
         printf("H empty\n");
-
-    Insert(4, H);
-    Insert(42, H);
-    Insert(14, H);
-    Insert(2, H);
-    Insert(1, H);
-
+    printf("请用插入函数来建立二叉堆：");
+    int key;
+    for (int i = 0; i <= 10; i++)
+    {
+        scanf_s("%d", &key);
+        Insert(key, H);
+    }
+    printf("建立好的二叉堆为：\n");
     printHeap(H);
+    printf("执行删除最小元素后的二叉堆为：\n");
     deleteMin(H);
     printHeap(H);
 
