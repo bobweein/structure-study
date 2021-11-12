@@ -49,23 +49,25 @@ CursorList Insert(CursorList L, Position pt, int x)
 	L.Kongwei = L.list[k].Next;//47 到48行对空位进行调整
 	L.list[k].data = x;//赋值
 	//要插入第几个位置就先找到那个位置的前驱的next
-	j = L.list[0].Next;//先指向第一个位置
-	//使用for循环，使j指向第pt-1个位置（当插入元素位置小于等于2，不必去找位置pt-1）
-	for (int i = 1; i < pt - 1; i++)
-		j = L.list[j].Next;
-	if (pt == 1&&n==1)  L.list[k].Next = 0;
-	else {
-		//将原本在位置pt上的元素作为第pt+1个位置
-		L.list[k].Next = L.list[j].Next;
+		j = L.list[0].Next;//先指向第一个位置
+		//使用for循环，使j指向第pt-1个位置（当插入元素位置小于等于2，不必去找位置pt-1）
+		for (int i = 1; i < pt - 1; i++)
+			j = L.list[j].Next;
+		if (pt == 1 && n == 1)  L.list[k].Next = 0;
 
-		//将pt-1位置上的next域指向k,(将这个插入的元素放在位置pt上)
-		L.list[j].Next = k;
-	}
-	if (pt == 1 && n != 1)
-	{
-		int temp; temp = L.list[k].data; L.list[k].data = L.list[1].data; L.list[1].data = temp;
-	}
+		else if (pt == 1 && n != 1)
+		{
+			L.list[k].Next = L.list[0].Next;
+			L.list[0].Next = k;
+		}
+		else
+		{
+			//将原本在位置pt上的元素作为第pt+1个位置
+			L.list[k].Next = L.list[j].Next;
+			//将pt-1位置上的next域指向k,(将这个插入的元素放在位置pt上)
+			L.list[j].Next = k;
 
+		}
 	return L;
 }
 Position Islast(Position pt, CursorList L)
@@ -95,13 +97,23 @@ CursorList Delete(Position pt, CursorList L)
 		return;
 	}
 	int p, j;
-	j = L.list[0].Next;
-	for (int i = 1; i < pt-1; i++)
-		j = L.list[j].Next;
-	p = L.list[j].Next;
-	L.list[j].Next = L.list[p].Next;
-	L.deldata = L.list[p].data;
-	CursorFree(L, p);
+	if (pt ==1)
+	{
+		j = L.list[0].Next;
+		L.list[0].Next = L.list[j].Next;
+		L.deldata = L.list[j].data;
+		CursorFree(L, j);
+	}
+	else
+	{
+		j = L.list[0].Next;
+		for (int i = 1; i < pt - 1; i++)
+			j = L.list[j].Next;
+		p = L.list[j].Next;
+		L.list[j].Next = L.list[p].Next;
+		L.deldata = L.list[p].data;
+		CursorFree(L, p);
+	}
 	return L;
 }
 void PrintList(CursorList L)
@@ -124,14 +136,19 @@ Position Find(CursorList L, ElementType x)
 		p = L.list[p].Next;
 		n++;
 	}
+	if (p == 0)  return 0; 
 	return n;
 }
-Position PFindX(Position pt, CursorList L)
+Position PFindX( Position pt, CursorList L)
 {
 	Position p;
+	int n = 1;
 	p = L.list[0].Next;
-	for (int i = 1; i < pt; i++)
+	while (p&&pt>0&&n < pt)
+	{
 		p = L.list[p].Next;
+		n++;
+	}
 	return L.list[p].data;
 }
 int main()
@@ -166,13 +183,13 @@ int main()
 	printf("请输入一个你要查找的数：");
 	scanf_s("%d", &x);
 	pt = Find(L, x);
-	printf("这个数的在第%d位置上！(如果结果为0，代表链表为空)", pt);
+	printf("这个数的在第%d位置上！(如果结果为0，代表链表为空或者没有这个元素)\n", pt);
 	//通过位置找元素，并返回这个元素的值！
 	printf("\n请输入要查找的位置(请不要大于链表的长度！)：");
 	scanf_s("%d", &pt);
 	int y = 0;
 	y = PFindX(pt, L);
-	printf("位置%d上的元素为%d\n", pt, y);
+	printf("位置%d上的元素为%d(如果为0，则链表为空或者查找的位置超出链表的长度)\n", pt, y);
 
 	return 0;
 
