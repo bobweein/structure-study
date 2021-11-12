@@ -46,8 +46,7 @@ int* find(ListNode *L, int e)
 		if (L->list[i] == e)
 		{
 			p = &L->list[i];
-			printf("值为%d的元素的地址为：", e);
-			printf("%d\n", p);
+			printf("值为%d的元素的地址为：%d\n", e,P);
 			return p;
 		}
 	return NULL;
