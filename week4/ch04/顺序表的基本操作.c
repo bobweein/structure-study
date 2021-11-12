@@ -55,7 +55,7 @@ ListNode* Insert(ListNode *L, int i, int e)
 {
 	if (i<0 || i>L->length) printf("这个位置不对，快换一个！\n");
 	else
-		if (L->length > ListSize)
+		if (L->length >= ListSize)
 		{
 			printf("这个顺序表已经满了！\n");
 		}
