@@ -7,14 +7,16 @@ typedef struct
 	ElementType stack[StackSize];
 	int topofstack;
 }Sstack;
+//初始化栈
 Sstack Init(Sstack S)
 {
 	S.topofstack = -1;
 	return S;
 }
+//元素入栈
 Sstack Push(Sstack S, ElementType X)
 {
-	if (S.topofstack == StackSize - 1)
+	if (S.topofstack == StackSize - 1)//超出开辟的数组的空间
 		printf("Out of Space!");
 	else
 	{
@@ -22,6 +24,7 @@ Sstack Push(Sstack S, ElementType X)
 	}
 	return S;
 }
+//元素出栈
 Sstack Pop(Sstack S,ElementType X)
 {
 	if (S.topofstack == -1)
@@ -34,16 +37,19 @@ Sstack Pop(Sstack S,ElementType X)
 	}
 	return S;
 }
+//读取栈顶元素
 ElementType Gettop(Sstack S)
 {
 	if (S.topofstack != -1 && S.topofstack != StackSize)
 		return S.stack[S.topofstack-1];
 	
 }
+//获取栈的长度
 ElementType StackLen(Sstack S)
 {
 	return S.topofstack;
 }
+//清空栈
 Sstack CleanStack(Sstack S,ElementType X)
 {
 	printf("take the element out of  the stack! ");
@@ -56,6 +62,7 @@ Sstack CleanStack(Sstack S,ElementType X)
 	printf("栈已清空！");
 	return S;
 }
+//显示栈中元素（从栈顶到栈底）
 void  ElementInStack(Sstack S)
 {
 	printf("现在栈中的元素为(从栈顶到栈底)：");
