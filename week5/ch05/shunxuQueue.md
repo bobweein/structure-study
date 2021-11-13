@@ -4,3 +4,4 @@
 3、这是又会遇到如何判定队列为空和队列已满，所以添加标志flag，当入队成功时flag=1，
 出队成功时flag=0，对空的条件为front=rear&&flag==0队满的条件为front ==rear&&flag==1。
 4、然后执行出队入队操作即可。
+5、还有一种表示队空和队满的判断方法  当front==(rear+1)%QueueSize，队满，但是此时数组将空出一个位置。当rear==front时队空
