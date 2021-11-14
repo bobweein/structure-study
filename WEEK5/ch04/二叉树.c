@@ -13,6 +13,7 @@ Bitree Init()
 	Bitree T;
 	return T = NULL;
 }
+//这是二叉查找数的插入函数，建立的是二叉查找树
 //这个插入函数搬用了方芷柔同学写的插入函数。
 Bitree Insert(int x, Bitree T)//插入元素
 {
@@ -33,7 +34,7 @@ Bitree Insert(int x, Bitree T)//插入元素
         T->rchild = Insert(x, T->rchild);//向右沿树查找可插入的位置
     return T;
 }
-void PrePrint(Bitree T)
+void PrePrint(Bitree T)//前序遍历
 {
     if (T)
     {
