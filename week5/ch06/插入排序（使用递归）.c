@@ -2,8 +2,8 @@
 void insertionsort(int arr[], int n)
 {
 	void Printarr(int arr[], int n);
-	if (n != 1)//递归结束的标志
-		insertionsort(arr, n - 1);
+	if (n != 1)//递归出口的标志
+		insertionsort(arr, n - 1);//先往前走，做到递归出口，然后在回来的途中解决问题！（先解决n=2的问题，然后在返回上一层解决n=3的问题，一直往后回到递归开始的地方）
 	int temp,i;
 	temp = arr[n];//当前递归中数组的最后一个（不是最大的那个数组的最后一个）
 	i = n - 1;
